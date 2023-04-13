@@ -9,21 +9,13 @@ using ProfilePage.Utilities;
 namespace ProfilePage.StepDefinitions
 {
     [Binding]
-    public class DescriptionFeatureStepDefinitions
+    public class DescriptionFeatureStepDefinitions : CommonDriver
     {
-        LoginPage loginPageObj = new LoginPage();
-        IWebDriver driver = new ChromeDriver();
+
         DescriptionTab descriptionTabObj = new DescriptionTab();
-        CommonDriver commonDriver0bj = new CommonDriver();
-
-
-        [Given(@"I launch and log into MarsQA portal successfully"), Scope(Tag = "descriptionBinding")]
-        public void GivenILaunchAndLogIntoMarsQAPortalSuccessfully()
-        {
-            loginPageObj.LogInActions(driver);
-        }
-        [When(@"I add a new description")]
-        public void WhenIAddANewDescription()
+       
+        [Given(@"I add a new description")]
+        public void GivenIAddANewDescription()
         {
             descriptionTabObj.Description(driver);
         }
@@ -31,8 +23,8 @@ namespace ProfilePage.StepDefinitions
         [Then(@"The new description should be added successfully")]
         public void ThenTheNewDescriptionShouldBeAddedSuccessfully()
         {
-            string newDescription = commonDriver0bj.alertWindow(driver);
-            Assert.That(newDescription == "Description has been saved successfully", "Failed to save description");
+            string newDescription = descriptionTabObj.alertWindow(driver);
+            Assert.That(newDescription == "Description has been saved successfully", "Actual & expected result does not match");
         }
     }
 }

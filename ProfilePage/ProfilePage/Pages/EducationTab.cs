@@ -24,6 +24,8 @@ namespace ProfilePage.Pages
             IWebElement addNewEducation = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/thead/tr/th[6]/div"));
             addNewEducation.Click();
 
+            WaitToBeClickable(driver, "Name", "instituteName", 5);
+
             IWebElement instituteTextbox = driver.FindElement(By.Name("instituteName"));
             instituteTextbox.SendKeys(uniName);
 
@@ -59,6 +61,8 @@ namespace ProfilePage.Pages
 
             IWebElement editIcon = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody[last()]/tr/td[6]/span[1]/i"));
             editIcon.Click();
+
+            WaitToBeClickable(driver, "Name", "instituteName", 5);
 
             IWebElement instituteTextbox = driver.FindElement(By.Name("instituteName"));
             instituteTextbox.Clear();
@@ -98,6 +102,16 @@ namespace ProfilePage.Pages
             deleteIcon.Click();
 
         }
-        
+
+        public string alertWindow(IWebDriver driver)
+        {
+
+            WaitForELementToExist(driver, "CssSelector", "[class=\"ns-box ns-growl ns-effect-jelly ns-type-success ns-show\"]", 5);
+
+            IWebElement confirmationAlert = driver.FindElement(By.CssSelector("[class=\"ns-box ns-growl ns-effect-jelly ns-type-success ns-show\"]"));
+            return confirmationAlert.Text;
+
+        }
+
     }
 }

@@ -9,21 +9,12 @@ using ProfilePage.Utilities;
 namespace ProfilePage.StepDefinitions
 {
     [Binding]
-    public class LanguageFeatureStepDefinitions
+    public class LanguageFeatureStepDefinitions : CommonDriver
     {
-        LoginPage loginPageObj = new LoginPage();
-        IWebDriver driver = new ChromeDriver();
         LanguageTab languageTabObj = new LanguageTab();
-        CommonDriver commonDriver0bj = new CommonDriver();
-
-
-        [Given(@"I launch and log into MarsQA portal successfully"), Scope(Tag = "languageBinding")]
-        public void GivenILaunchAndLogIntoMarsQAPortalSuccessfully()
-        {
-            loginPageObj.LogInActions(driver);
-        }
-        [When(@"I add a new language")]
-        public void WhenIAddANewLanguage()
+       
+        [Given(@"I add a new language")]
+        public void GivenIAddANewLanguage()
         {
             languageTabObj.Languages(driver);
         }
@@ -31,8 +22,8 @@ namespace ProfilePage.StepDefinitions
         [Then(@"The new language should be added successfully")]
         public void ThenTheNewLanguageShouldBeAddedSuccessfully()
         {
-            string newLanguage = commonDriver0bj.alertWindow(driver);
-            Assert.That(newLanguage == "Filipino has been added to your languages", "Failed to add Language");
+            string newLanguage = languageTabObj.alertWindow(driver);
+            Assert.That(newLanguage == "Filipino has been added to your languages", "Actual & expected result does not match");
         }
     }
 }

@@ -5,22 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SeleniumExtras.WaitHelpers;
+using OpenQA.Selenium.Chrome;
 
 namespace ProfilePage.Utilities
 {
     public class CommonDriver : Wait
     {
-        public IWebDriver driver;
-        
-        public string alertWindow(IWebDriver driver)
-        {
+        public static IWebDriver driver;
 
-            WaitForELementToExist(driver, "CssSelector", "[class=\"ns-box ns-growl ns-effect-jelly ns-type-success ns-show\"]", 5);
-
-            IWebElement confirmationAlert = driver.FindElement(By.CssSelector("[class=\"ns-box ns-growl ns-effect-jelly ns-type-success ns-show\"]"));
-            return confirmationAlert.Text;
-
-        }
     }
     
 }

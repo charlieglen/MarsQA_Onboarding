@@ -9,21 +9,12 @@ using ProfilePage.Utilities;
 namespace ProfilePage.StepDefinitions
 {
     [Binding]
-    public class CertificationFeatureStepDefinitions
+    public class CertificationFeatureStepDefinitions : CommonDriver
     {
         CertificationTab certificationTabObj = new CertificationTab();
-        LoginPage loginPageObj = new LoginPage();
-        IWebDriver driver = new ChromeDriver();
-        CommonDriver commonDriver0bj = new CommonDriver();
-
-        [Given(@"I launch and log into MarsQA portal successfully"), Scope(Tag = "certificationBinding")]
-        public void GivenILaunchAndLogIntoMarsQAPortalSuccessfully()
-        {
-            loginPageObj.LogInActions(driver);
-        }
-    
-        [When(@"I add a new certification details")]
-        public void WhenIAddANewCertificationDetails()
+        
+        [Given(@"I add a new certification details")]
+        public void GivenIAddANewCertificationDetails()
         {
             
             certificationTabObj.Certifications(driver);
@@ -32,8 +23,9 @@ namespace ProfilePage.StepDefinitions
         [Then(@"The new certification details should be added successfully")]
         public void ThenTheNewCertificationDetailsShouldBeAddedSuccessfully()
         {
-            string newCertification = commonDriver0bj.alertWindow(driver);
-            Assert.That(newCertification == "CCNA has been added to your certification", "Failed to add certification details");
+            
+            string newCertification = certificationTabObj.alertWindow(driver);
+            Assert.That(newCertification == "CCNA has been added to your certification", "Actual & expected result does not match");
         }
     }
 }

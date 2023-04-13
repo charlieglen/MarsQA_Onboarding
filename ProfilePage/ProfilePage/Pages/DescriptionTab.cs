@@ -22,17 +22,27 @@ namespace ProfilePage.Pages
         public void Description(IWebDriver driver)
         {
 
-            WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/h3/span/i", 5);
+            WaitToBeClickable(driver, "CssSelector", "[class=\"outline write icon\"]", 5);
 
-            IWebElement addDescriptionButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/div/h3/span/i"));
+            IWebElement addDescriptionButton = driver.FindElement(By.CssSelector("[class=\"outline write icon\"]"));
             addDescriptionButton.Click();
 
             IWebElement descriptionTextArea = driver.FindElement(By.Name("value"));
+            descriptionTextArea.SendKeys(Keys.Control + "a");
             descriptionTextArea.Clear();
             descriptionTextArea.SendKeys("I am a Test Analyst.");
 
             IWebElement saveDescription = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button"));
             saveDescription.Click();
+        }
+        public string alertWindow(IWebDriver driver)
+        {
+
+            WaitForELementToExist(driver, "CssSelector", "[class=\"ns-box ns-growl ns-effect-jelly ns-type-success ns-show\"]", 5);
+
+            IWebElement confirmationAlert = driver.FindElement(By.CssSelector("[class=\"ns-box ns-growl ns-effect-jelly ns-type-success ns-show\"]"));
+            return confirmationAlert.Text;
+
         }
     }
 }

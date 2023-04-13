@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProfilePage.Utilities;
+using OpenQA.Selenium.Support.UI;
 
 namespace ProfilePage.Pages
 {
@@ -13,9 +14,9 @@ namespace ProfilePage.Pages
         public void Certifications(IWebDriver driver)
         {
 
-            WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]", 5);
+            WaitToBeClickable(driver, "XPath", "//*[@class=\"ui top attached tabular menu\"]/a[4]", 5);
 
-            IWebElement CertificationsTab = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]"));
+            IWebElement CertificationsTab = driver.FindElement(By.XPath("//*[@class=\"ui top attached tabular menu\"]/a[4]"));
             CertificationsTab.Click();
 
             IWebElement addNewCert = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/thead/tr/th[4]/div"));
@@ -29,12 +30,20 @@ namespace ProfilePage.Pages
 
             IWebElement certYearDropdown = driver.FindElement(By.Name("certificationYear"));
             certYearDropdown.Click();
-
-            IWebElement certYear = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/div/div[2]/div[2]/select/option[7]"));
-            certYear.Click();
-
-            IWebElement addCertification = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/div/div[3]/input[1]"));
+            SelectElement certYear = new SelectElement(certYearDropdown);
+            certYear.SelectByValue("2023");
+            
+            IWebElement addCertification = driver.FindElement(By.XPath("//*[@value='Add']"));
             addCertification.Click();
+        }
+        public string alertWindow(IWebDriver driver)
+        {
+
+            WaitForELementToExist(driver, "CssSelector", "[class=\"ns-box ns-growl ns-effect-jelly ns-type-success ns-show\"]", 5);
+
+            IWebElement confirmationAlert = driver.FindElement(By.CssSelector("[class=\"ns-box ns-growl ns-effect-jelly ns-type-success ns-show\"]"));
+            return confirmationAlert.Text;
+
         }
     }
 }
