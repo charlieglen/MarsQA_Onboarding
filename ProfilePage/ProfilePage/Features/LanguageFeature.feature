@@ -1,6 +1,7 @@
 ﻿Feature: LanguageFeature
 
-A short summary of the feature
+As a seller, I would like to sign up to MarsQA portal and add languages that I know.
+So people seeking for some skills can look into it.
 
 @languageBinding
 Scenario: Add language on my profile

@@ -1,7 +1,7 @@
 ﻿Feature: EducationFeature
 
-As a seller, I would like to sign up to MarsQA portal and create my profile
-So people seeking for some skills can look into my details.
+As a seller, I would like to sign up to MarsQA portal and add my education details.
+So people seeking for some skills can look into it.
 
 Scenario Outline: 01) Add education record on my profile
 	Given I add a new education record, '<Institution Name>', '<Institution Country>', '<Title>', '<Degree>', '<Year>'
@@ -9,8 +9,9 @@ Scenario Outline: 01) Add education record on my profile
 
 Examples:
 | Institution Name | Institution Country | Title | Degree               | Year |
-| USM              | Philippines        | B.Sc  | Computer Engineering | 2010 |
-| USEP             | Canada             | BFA   | Astronaut            | 2018 |
+| USM              | Philippines         | B.Sc  | Computer Engineering | 2010 |
+| USEP             | Canada              | BFA   | Astronaut            | 2018 |
+| MAPUA            | Oman                | M.B.A | Chemistry            | 2019 |
 
 Scenario:  02) Edit education record on my profile
 	Given I edit an existing education record

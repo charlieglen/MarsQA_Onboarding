@@ -1,6 +1,7 @@
 ﻿Feature: CertificationFeature
 
-A short summary of the feature
+As a seller, I would like to sign up to MarsQA portal and add my certification details
+So people seeking for some skills can look into it.
 
 @certificationBinding
 Scenario: Add certification details on my profile

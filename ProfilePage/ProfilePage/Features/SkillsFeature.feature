@@ -1,6 +1,7 @@
 ﻿Feature: SkillsFeature
 
-A short summary of the feature
+As a seller, I would like to sign up to MarsQA portal and add my skills.
+So people seeking for some skills can look into it.
 
 @skillsBinding
 Scenario: Add skills on my profile
